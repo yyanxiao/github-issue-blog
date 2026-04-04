@@ -36,7 +36,7 @@ export default function PostEditor({
         classNames={{
           inputWrapper:
             'data-[hover=true]:bg-transparent group-data-[focus=true]:bg-transparent bg-transparent outline-none p-0',
-          input: '!text-primary font-bold text-3xl',
+          input: '!text-primary font-bold text-xl md:text-3xl',
         }}
       />
       <Textarea
