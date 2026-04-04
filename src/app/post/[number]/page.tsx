@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import CommentsSection from '@/components/Post/CommentsSection';
 import Actions from '@/components/Post/Actions';
 import Title from '@/components/Post/Title';
 import MarkdownWrapper from '@/components/Post/MarkdownWrapper';
@@ -27,10 +26,10 @@ export default async function Post({ params }: { params: { number: string } }) {
     <div className="mx-auto grid max-w-[65ch] gap-6">
       <Title title={post.title} createdAt={post.created_at} />
       {(await isAuthor()) ? <Actions number={number} /> : null}
-      <div className="prose dark:prose-invert prose-pre:bg-[#282c34]">
+      {/* 优化了 prose 的移动端响应式字号 */}
+      <div className="prose prose-sm md:prose-base dark:prose-invert prose-pre:bg-[#282c34] mx-auto w-full">
         <MarkdownWrapper>{post.body}</MarkdownWrapper>
-        <hr />
-        <CommentsSection number={number} />
+        {/* 物理切除了 <hr /> 分割线和 <CommentsSection /> 评论组件，彻底保持研报纯净 */}
       </div>
     </div>
   );
