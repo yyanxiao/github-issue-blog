@@ -1,26 +1,18 @@
 'use client';
 
-import { useTransition } from 'react';
-import { usePathname } from 'next/navigation';
 import { Avatar } from "@heroui/avatar";
-import { Button } from "@heroui/button";
 import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
 } from "@heroui/dropdown";
-import { logOut, login } from '@/actions/auth';
+import { logOut } from '@/actions/auth';
 import { User } from '@/types';
-import { GitHub } from '../Icons';
 
 export default function AvatarWrapper({ user }: { user: User | null }) {
-  const [isLoading, startTransition] = useTransition();
-  const pathname = usePathname();
-
   if (!user) {
-    // 物理隐身：如果没有登录，直接返回空，什么都不显示
-    return null; 
+    return null;
   }
 
   return (
