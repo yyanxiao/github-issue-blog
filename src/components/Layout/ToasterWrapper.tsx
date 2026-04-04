@@ -26,7 +26,8 @@ export default function ToasterWrapper() {
 
   return (
     <Toaster
-      position="bottom-left"
+      // 响应式/移动端友好优化：改为底部居中或顶部居中
+      position="bottom-center" 
       toastOptions={{
         style: {
           background: theme === 'dark' ? '#171717' : '#ffffff',
