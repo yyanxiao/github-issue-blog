@@ -15,7 +15,7 @@ export default async function MarkdownWrapper({
           const { children: c, className } = props;
           const match = /language-(\w+)/.exec(className || '');
           return match ? (
-            <div className="max-w-[80vw]">
+            <div className="max-w-[80vw] w-full text-xs md:text-sm">
               <SyntaxHighlighter
                 PreTag="div"
                 language={match[1]}
