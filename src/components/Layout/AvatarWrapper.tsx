@@ -19,23 +19,8 @@ export default function AvatarWrapper({ user }: { user: User | null }) {
   const pathname = usePathname();
 
   if (!user) {
-    return (
-      <Button
-        size="sm"
-        radius="sm"
-        color="primary"
-        isLoading={isLoading}
-        className="flex items-center fill-background"
-        onPress={() => {
-          startTransition(async () => {
-            await login(pathname);
-          });
-        }}
-      >
-        {isLoading ? null : <GitHub />}
-        Login
-      </Button>
-    );
+    // 物理隐身：如果没有登录，直接返回空，什么都不显示
+    return null; 
   }
 
   return (
