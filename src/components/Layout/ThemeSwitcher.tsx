@@ -18,7 +18,8 @@ export default function ThemeSwitcher() {
   return (
     <button
       type="button"
-      className="fill-primary text-xl"
+      // 引入响应式尺寸：手机端 text-lg，电脑端 text-xl，与 Logo 尺寸完美对应
+      className="fill-primary text-lg md:text-xl transition-opacity hover:opacity-70"
       onClick={() => {
         setTheme(theme === 'dark' ? 'light' : 'dark');
       }}
