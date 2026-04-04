@@ -11,7 +11,7 @@ export default function Posts({ data }: { data: Issues }) {
   const { posts, noMorePosts, loadMore } = usePosts(data);
 
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-8 md:gap-12">
       {posts.map((post) => (
         <Link key={post.id} href={`post/${post.number}`}>
           <Title title={post.title} createdAt={post.created_at} />
