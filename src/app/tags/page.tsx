@@ -6,6 +6,13 @@ export const metadata = {
   title: `Tags | ${process.env.BLOG_TITLE}`,
 };
 
+// ================= 核心升级：打破永久缓存 =================
+// 告诉 Vercel 服务器：这个页面的缓存最多保留 60 秒。
+// 60 秒后如果有用户访问，后台会自动去 GitHub 拉取最新标签并静默更新。
+// （如果你觉得 60 秒太频繁，可以改为 3600 即 1 小时）
+export const revalidate = 3600;
+// =========================================================
+
 export default async function TagsPage() {
   const tags = await getTags();
 
