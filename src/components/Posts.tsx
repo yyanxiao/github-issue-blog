@@ -1,5 +1,6 @@
-/* eslint-disable react/require-default-props */
 'use client';
+
+/* eslint-disable react/require-default-props */
 
 import { InView } from 'react-intersection-observer';
 import { Link } from "@heroui/link";
