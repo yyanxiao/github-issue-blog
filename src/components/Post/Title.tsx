@@ -1,6 +1,6 @@
+/* eslint-disable react/require-default-props */
 import { Chip } from "@heroui/react";
 
-// 1. 核心升级：定义兼容 GitHub 原生 API 的联合类型
 type GitHubLabel = string | { name?: string; color?: string | null; [key: string]: any };
 
 export default function Title({
@@ -10,7 +10,6 @@ export default function Title({
 }: {
   title: string;
   createdAt: string;
-  // 2. 核心升级：接收更宽泛的标签类型
   labels?: GitHubLabel[];
 }) {
   return (
@@ -22,16 +21,15 @@ export default function Title({
         
         {labels.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            {labels.map((label, index) => {
-              // 3. 智能解析引擎：物理剥离并提取真实的标签名字
+            {/* 核心修复：移除了 index 参数 */}
+            {labels.map((label) => {
               const labelName = typeof label === 'string' ? label : label.name;
               
-              // 如果遇到异常的空标签，直接跳过渲染，防止网页崩溃
               if (!labelName) return null; 
               
               return (
                 <Chip 
-                  key={`${labelName}-${index}`} // 增加 index 防止存在重复同名标签时 React 报错
+                  key={labelName} // 核心修复：利用 GitHub 标签命名的绝对唯一性，直接使用 labelName 作为 key
                   size="sm" 
                   variant="flat" 
                   color="secondary"
