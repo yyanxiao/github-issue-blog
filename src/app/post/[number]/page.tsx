@@ -24,7 +24,11 @@ export default async function Post({ params }: { params: { number: string } }) {
 
   return (
     <div className="mx-auto grid max-w-[65ch] gap-6">
-      <Title title={post.title} createdAt={post.created_at} />
+      <Title 
+        title={post.title} 
+        createdAt={post.created_at} 
+        labels={post.labels} // 核心新增
+      />
       {(await isAuthor()) ? <Actions number={number} /> : null}
       {/* 优化了 prose 的移动端响应式字号 */}
       <div className="prose prose-sm md:prose-base dark:prose-invert prose-pre:bg-[#282c34] mx-auto w-full">
