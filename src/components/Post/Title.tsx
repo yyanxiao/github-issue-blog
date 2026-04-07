@@ -46,7 +46,7 @@ export default function Title({
               <Chip 
                 key={labelName} 
                 size="sm" 
-                variant="bordered" 
+                variant="light" 
                 color="secondary"
                 // 5. 标签深度压缩：降低边框存在感，极限压缩标签内的 padding
                 className="opacity-70 border-secondary/30 h-6 text-[11px] px-1"
