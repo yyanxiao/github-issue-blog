@@ -24,9 +24,9 @@ export default async function TagsPage() {
           <Link key={tag.name} href={`/tags/${tag.name}`}>
             <Chip 
               size="lg" 
-              variant="flat" 
+              variant="light" 
               color="secondary" 
-              className="cursor-pointer transition-transform hover:scale-105"
+              className="cursor-pointer transition-transform hover:scale-105 border-secondary/40 hover:border-secondary/80"
             >
               {tag.name}
             </Chip>
