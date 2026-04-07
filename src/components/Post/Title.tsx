@@ -13,44 +13,43 @@ export default function Title({
   labels?: GitHubLabel[];
 }) {
 
-  // ================= 核心升级：数据清洗与重排引擎 =================
   const processedLabels = labels
-    // 1. 提取真实的标签名称
     .map(label => typeof label === 'string' ? label : label.name)
-    // 2. 物理过滤：排除空值，并强行隐藏 'blog' 标签（忽略大小写）
     .filter(name => name && name.toLowerCase() !== 'blog')
-    // 3. 强制排序规则
     .sort((a, b) => {
-      // 定义最高优先级的标签字典
       const priorityTags = ['日报', '周报'];
       const aIsPriority = priorityTags.includes(a as string);
       const bIsPriority = priorityTags.includes(b as string);
       
-      // 如果 a 是日报/周报，b 不是，a 排前面 (-1)
       if (aIsPriority && !bIsPriority) return -1;
-      // 如果 b 是日报/周报，a 不是，b 排前面 (1)
       if (!aIsPriority && bIsPriority) return 1;
-      // 如果都不是，或者都是，则按默认字母表顺序排列
       return (a as string).localeCompare(b as string);
-    }) as string[]; // 断言为字符串数组以消除 TS 警告
-  // ==============================================================
+    }) as string[];
 
   return (
-    <div className="grid gap-2">
-      <h1 className="text-xl sm:text-2xl md:text-[1.7rem] font-bold leading-tight">{title}</h1>
+    // 1. 微观收紧：缩小标题与下方标签行的垂直间距 (gap-2 -> gap-1.5)
+    <div className="grid gap-1.5">
       
-      <div className="flex flex-wrap items-center gap-4 text-sm text-primary-500">
+      {/* 2. 字号降维：移除巨型 1.7rem，改为更克制的 text-lg 和 text-xl，并增加轻微的不透明度渐变提升质感 */}
+      <h1 className="text-lg md:text-xl font-bold leading-tight opacity-90 transition-opacity hover:opacity-100">
+        {title}
+      </h1>
+      
+      {/* 3. 辅助信息弱化：缩小日期字体至 text-xs，收紧日期与标签的横向间距 (gap-4 -> gap-3) */}
+      <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm text-primary-500/70">
         <time>{new Date(createdAt).toDateString()}</time>
         
         {processedLabels.length > 0 && (
-          <div className="flex flex-wrap gap-2">
+          // 4. 收紧标签组内部的横向间距 (gap-2 -> gap-1.5)
+          <div className="flex flex-wrap gap-1.5">
             {processedLabels.map((labelName) => (
               <Chip 
                 key={labelName} 
                 size="sm" 
-                variant="light" 
+                variant="bordered" 
                 color="secondary"
-                className="opacity-80 border-secondary/40"
+                // 5. 标签深度压缩：降低边框存在感，极限压缩标签内的 padding
+                className="opacity-70 border-secondary/30 h-6 text-[11px] px-1"
               >
                 {labelName}
               </Chip>
