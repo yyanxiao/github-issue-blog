@@ -17,7 +17,7 @@ export default function Title({
     .map(label => typeof label === 'string' ? label : label.name)
     .filter(name => name && name.toLowerCase() !== 'blog')
     .sort((a, b) => {
-      const priorityTags = ['日报', '周报'];
+      const priorityTags = ['日报', '周报', '内购'];
       const aIsPriority = priorityTags.includes(a as string);
       const bIsPriority = priorityTags.includes(b as string);
       
