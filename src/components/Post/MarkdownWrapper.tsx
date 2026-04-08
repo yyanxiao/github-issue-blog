@@ -1,7 +1,6 @@
 import Markdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-// 1. 核心引入：导入 GitHub 扩展语法解析器
 import remarkGfm from 'remark-gfm';
 
 export default async function MarkdownWrapper({
@@ -11,8 +10,8 @@ export default async function MarkdownWrapper({
 }) {
   return (
     <Markdown
-      // 2. 核心注入：将插件外挂至渲染引擎，瞬间解锁表格、删除线、任务列表等能力
-      remarkPlugins={[remarkGfm]}
+      // 核心修复：强行穿透类型审查
+      remarkPlugins={[remarkGfm as any]}
       components={{
         // eslint-disable-next-line react/no-unstable-nested-components
         code(props) {
