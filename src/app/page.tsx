@@ -4,6 +4,9 @@ import Posts from '@/components/Posts';
 import { getPosts } from '@/utils/post';
 import { isAuthor } from '@/utils/auth';
 
+// 👇 核心核爆指令：强制打破永久数据缓存，设定 60 秒为数据的最长保质期
+export const revalidate = 60;
+
 export default async function Home() {
   const data = await getPosts(1);
 
